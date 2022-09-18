@@ -20,7 +20,7 @@ class House_book{
             System.out.println("日付を変更します。");
             fo.create(simple_Format);
         }
-        //ファイルを読み込んでコンソール上に表示
+        //ファイルを読み込んでターミナル上に表示
         String[][] data = fo.data(fo.read(simple_Format));
         fo.display(data);
 
@@ -33,7 +33,8 @@ class House_book{
             String spot = scanner.next();
             String money = scanner.next();
             String exit_command = "exit";
-
+        
+        //ターミナルからの指定のコマンドでウィンドウを閉じる
             if(spot.equals(exit_command)){
                 System.out.println("ウィンドウを閉じます....");
                 break;
@@ -41,7 +42,7 @@ class House_book{
         //入力データを指定ファイルに書き込み
             fo.write(spot, money, Format, simple_Format);
             data = fo.data(fo.read(simple_Format));
-        //読み込んだファイルをコンソール上に表示    
+        //読み込んだファイルをターミナル上に表示    
             fo.display(data);
         
         //読み込んだファイル内の合計値を出力
