@@ -26,6 +26,14 @@ public class FileOperation {
 
         try {
             List<String> lines = Files.readAllLines(path);
+            // for文でiとかjを使うのは数値を使うときってのが一般的。
+            // 文字列とかそれ以外のオブジェクトなどを扱うときはfor(単数系 : 複数形)にするとよい。
+            // もし自分が作るなら今回のlinesはfileLinesとかに命名するかな。
+            // for(String fileLine : fileLines)って感じ。
+
+            // てかFile.readAllLinesしたものをそのままreturnすれば以下のfor文の処理がなくても動きそうなもんだけど違うんかな。
+            // 以下は「数値を出力できない」って処理がここの話であれば参考にしてほしい。
+            // 金額を集計する処理でint型にしてるけど、保存(出力)時にまたString型に変換してやればreturn linesができそうな気がする。
             for (String i : lines){
                 line.add(i);
             }
@@ -71,6 +79,7 @@ public class FileOperation {
     }
 
     // メソッド名が'data'は何をしてるかわからなすぎる。動詞+名詞にしてくれ〜！
+    // 追記: 'data'は言語によっては予約語になってる可能性もあるから避けたほうがよい。
     //ファイルから読み込んだデータを2次元配列へ
     public String[][] data(List<String> line){
         List<String> spots = new ArrayList<String>();
@@ -81,7 +90,7 @@ public class FileOperation {
         for (String contents : line){
             String[] content = contents.split(" ");
             // ここで渡してる数値はメンバー変数なり別ファイルなりに持つとよいのではないか。
-            // private final int spotColumnNum = 0;とかしておけば今後金額のを列の場所を変更したいときにも簡単に対応できるよね。
+            // private final int spotColumnNum = 0;とかしておけば今後金額の列の場所を変更したいときにも簡単に対応できるよね。
             spots.add(content[0]);
             moneys.add(content[1]);
             times.add(content[2]);
